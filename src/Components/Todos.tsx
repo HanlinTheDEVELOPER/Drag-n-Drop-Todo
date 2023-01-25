@@ -1,6 +1,7 @@
 import React from "react";
 import { Todo } from "../Types/interface";
 import SingleTodo from "./SingleTodo";
+import { Action } from "../Reducer/TodoReducer";
 
 interface Props {
   todos: Todo[];
@@ -15,8 +16,9 @@ const Todos: React.FC<Props> = ({ todos, setTodos }) => {
           key={todo.id}
           todo={todo}
           todos={todos}
-          setTodos={setTodos}
-        />
+          setTodos={setTodos} dispatch={function (value: Action): void {
+            throw new Error("Function not implemented.");
+          } }        />
       ))}
     </div>
   );

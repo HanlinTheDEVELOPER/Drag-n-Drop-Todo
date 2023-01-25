@@ -1,18 +1,23 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { Todo } from "../Types/interface";
+import { Action } from "../Reducer/TodoReducer";
+import useTodoReducer from '../Reducer/TodoReducer';
 
 interface Props {
-  todo: string;
-  setTodo: React.Dispatch<React.SetStateAction<string>>;
-  handleAdd: (e: React.FormEvent) => void;
+  state: Todo[];
+  dispatch: React.Dispatch<Action>
 }
 
-const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }) => {
+const InputField: React.FC<Props> = () => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [todo, setTodo] = useState<string>("");
+  const [state,dispatch] = useTodoReducer()
+
   return (
     <form
       className="input"
       onSubmit={(e) => {
-        handleAdd(e);
+       dispatch({type: 'Add', payload: todo})
         inputRef.current?.blur();
       }}
     >
