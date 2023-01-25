@@ -3,12 +3,11 @@ import { AiFillEdit } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
-import useTodoReducer, { Action } from "../Reducer/TodoReducer";
+import { Action } from "../Reducer/TodoReducer";
 
 type Props = {
   todo: Todo;
   todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   dispatch: React.Dispatch<Action>;
 };
 
@@ -18,19 +17,17 @@ const SingleTodo: React.FC<Props> = ({ todo, todos, dispatch }) => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.todo);
 
-  
   useEffect(() => {
     inputRef.current?.focus();
   }, [editMode]);
 
   const handleDone = (id: number) => {
-    dispatch({ type: 'Done', payload: id });
+    dispatch({ type: "Done", payload: id });
   };
 
   const handleEdit = (e: React.FormEvent, id: number) => {
     e.preventDefault();
-   
-      
+
     setEditMode(false);
   };
 

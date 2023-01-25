@@ -1,24 +1,23 @@
 import React from "react";
-import { Todo } from "../Types/interface";
 import SingleTodo from "./SingleTodo";
 import { Action } from "../Reducer/TodoReducer";
+import { Todo } from "../Types/interface";
 
 interface Props {
-  todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  state: Todo[];
+  dispatch: React.Dispatch<Action>;
 }
 
-const Todos: React.FC<Props> = ({ todos, setTodos }) => {
+const Todos: React.FC<Props> = ({ state, dispatch }) => {
   return (
     <div className="todos">
-      {todos.map((todo) => (
+      {state.map((todo) => (
         <SingleTodo
           key={todo.id}
           todo={todo}
-          todos={todos}
-          setTodos={setTodos} dispatch={function (value: Action): void {
-            throw new Error("Function not implemented.");
-          } }        />
+          todos={state}
+          dispatch={dispatch}
+        />
       ))}
     </div>
   );
