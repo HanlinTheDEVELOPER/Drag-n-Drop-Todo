@@ -11,7 +11,6 @@ const InputField: React.FC<Props> = ({ state, dispatch }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [todo, setTodo] = useState<string>("");
 
-  console.log(state);
   return (
     <form
       className="input"

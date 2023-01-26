@@ -9,13 +9,24 @@ export type Action =
   | { type: "Add"; payload: string }
   | { type: "Remove"; payload: number }
   | { type: "Done"; payload: number }
-  | { type: "Edit"; payload: EditData };
+  | { type: "Edit"; payload: EditData }
+  | { type: "Active" };
 
 export const initialState: Todo[] = [
   {
     id: 1,
     todo: "test",
-    isDone: false,
+    isDone: true,
+  },
+  {
+    id: 2,
+    todo: "test 2 ",
+    isDone: true,
+  },
+  {
+    id: 3,
+    todo: "test 3",
+    isDone: true,
   },
 ];
 
@@ -42,15 +53,10 @@ export const TodoReducer = (state: Todo[], action: Action) => {
           : todo
       );
 
+    case "Active":
+      return state.filter((todo) => !todo.isDone);
+
     default:
       return state;
   }
 };
-
-// const useTodoReducer = ()  => {
-//   const [state: Todo[], dispatch : React.Dispatch<Action>]= useReducer(TodoReducer, initialState);
-
-//   return [state, dispatch];
-// };
-
-// export default useTodoReducer;
