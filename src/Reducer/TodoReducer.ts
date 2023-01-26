@@ -1,9 +1,15 @@
 import { Todo } from "../Types/interface";
 
+type EditData = {
+  id: number;
+  data: string;
+};
+
 export type Action =
   | { type: "Add"; payload: string }
   | { type: "Remove"; payload: number }
-  | { type: "Done"; payload: number };
+  | { type: "Done"; payload: number }
+  | { type: "Edit"; payload: EditData };
 
 export const initialState: Todo[] = [
   {
@@ -27,6 +33,13 @@ export const TodoReducer = (state: Todo[], action: Action) => {
     case "Done":
       return state.map((todo) =>
         todo.id === action.payload ? { ...todo, isDone: !todo.isDone } : todo
+      );
+
+    case "Edit":
+      return state.map((todo) =>
+        todo.id === action.payload.id
+          ? { ...todo, todo: action.payload.data }
+          : todo
       );
 
     default:

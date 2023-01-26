@@ -10,15 +10,29 @@ interface Props {
 
 const Todos: React.FC<Props> = ({ state, dispatch }) => {
   return (
-    <div className="todos">
-      {state.map((todo) => (
-        <SingleTodo
-          key={todo.id}
-          todo={todo}
-          todos={state}
-          dispatch={dispatch}
-        />
-      ))}
+    <div className="container">
+      <div className="todos">
+        <span className="todos__heading">Active Tasks</span>
+        {state.map((todo) => (
+          <SingleTodo
+            key={todo.id}
+            todo={todo}
+            todos={state}
+            dispatch={dispatch}
+          />
+        ))}
+      </div>
+      <div className="todos remove">
+        <span className="todos__heading">Completed Tasks</span>
+        {state.map((todo) => (
+          <SingleTodo
+            key={todo.id}
+            todo={todo}
+            todos={state}
+            dispatch={dispatch}
+          />
+        ))}
+      </div>
     </div>
   );
 };

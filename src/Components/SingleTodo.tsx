@@ -27,12 +27,12 @@ const SingleTodo: React.FC<Props> = ({ todo, todos, dispatch }) => {
 
   const handleEdit = (e: React.FormEvent, id: number) => {
     e.preventDefault();
-
+    dispatch({ type: "Edit", payload: { id, data: editTodo } });
     setEditMode(false);
   };
 
   const handleDelete = (id: number) => {
-    // setTodos(todos.filter((todo) => todo.id !== id));
+    dispatch({ type: "Remove", payload: id });
   };
   return (
     <form className="todos__single" onSubmit={(e) => handleEdit(e, todo.id)}>
